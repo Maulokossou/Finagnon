@@ -13,7 +13,6 @@
   <script lang="ts" setup>
   import SideBar from '@/components/SideBar.vue'
   import NavBar from '@/components/NavBar.vue'
-  import {Logo} from "../components/Logo.vue";
   import { useFilmStore } from "@/Stores/film";
   import { storeToRefs } from "pinia";
   import { ref, onMounted } from "vue";
