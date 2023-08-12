@@ -19,54 +19,34 @@ const router = createRouter({
       component: Accueil
     },
     {
-      path: '/dashboardcontainer',
-      name: 'dashboardcontainer',
-      component: DashboardContainer,
-      children: [
-        {
-          path: '/movie',
-          name: 'movie',
-          component: Movie,
-        },
-        {
-          path: '/cartoons',
-          name: 'cartoons',
-          component: Cartoons,
-        },
-        {
-          path: '/documentary',
-          name: 'documentary',
-          component:Documentary,
-        },
-        {
-          path: '/reality',
-          name: 'reality',
-          component: Reality,
-        },
-        {
-          path: '/serie',
-          name: 'serie',
-          component: Serie,
-        },
-      ]
-    },
-    {
-      path: '/',
-      name: 'accueil',
-      component: Accueil
-    },
-
-    {
       path: '/dashboard',
-      name: 'dashboard',
-      component: Dashboard,
-      children: [
-        {
-          path: '/movie',
-          name: 'movie',
-          component: Movie,
-        },
-      ]
+      name: 'dashboard_index',
+      component: Dashboard
+    },
+    {
+      path: '/dashboard/films',
+      name: 'dashboard_movies',
+      component: Movie
+    },
+    {
+      path: '/dashboard/cartoons',
+      name: 'dashboard_cartoons',
+      component: Cartoons
+    },
+    {
+      path: '/dashboard/documentary',
+      name: 'dashboard_documentary',
+      component: Documentary
+    },
+    {
+      path: '/dashboard/serie',
+      name: 'dashboard_serie',
+      component: Serie
+    },
+    {
+      path: '/dashboard/reality',
+      name: 'dashboard_reality',
+      component: Reality
     },
     {
       path: '/connexion',

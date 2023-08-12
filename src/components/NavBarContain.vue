@@ -2,6 +2,7 @@
     <div>
         <div class="container_bottom">
         <div class="contain">
+          
           <router-view>
             <div class="film_container">
               <div class="film" v-for="element in films">
@@ -13,6 +14,7 @@
                 <div class="collection">
                   <p>{{ element.genre }}_</p>
                   <p>{{ element.annee }}</p>
+                  <p>{{ element.type }}</p>
                 </div>
                 <p><span style="border-bottom: 1px solid black;">Durée: </span>{{ element.durée }}</p>
                </div>
@@ -38,7 +40,7 @@
     });
 </script>
 <style>
-    .container_bottom {
+.container_bottom {
   border-radius: 5px;
   margin: 10px;
   height: 540px;

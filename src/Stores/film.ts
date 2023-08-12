@@ -14,11 +14,11 @@ export const useFilmStore= defineStore ('film',()=>{
             films.value= data;
        }
     }
-    async function addFilm(film:Film) {
+   /*  async function addFilm(film:Film) {
         const {data, error}= await supabase.from ('Films').insert(film).select('*')
         if (data) {
             films.value.push(data[0])
         }
-    }
-    return{films, addFilm,initialise}
+    } */
+    return{films, /* addFilm */ initialise}
 })

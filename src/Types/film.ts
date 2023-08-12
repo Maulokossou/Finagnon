@@ -6,6 +6,7 @@ export type Film = {
     genre:string,
     Image:string,
     annee:number,
+    type:string,
     durée: string,
     url:string
 }

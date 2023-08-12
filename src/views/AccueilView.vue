@@ -5,7 +5,7 @@
                     <div class="navbar">
                         <Logo/>
                         <div class="nav_connexion">
-                            <button><router-link to="/enregistrement">S'IDENTIFIER</router-link></button>
+                            <button><router-link to="/connexion">S'IDENTIFIER</router-link></button>
                         </div>
                     </div>
                     <div class="presentation">

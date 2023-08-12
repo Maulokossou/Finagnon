@@ -7,7 +7,7 @@
       <div class="side-bar_mid">
         <h2>Home</h2>
         <div class="movies">
-          <router-link to="/movie">
+          <router-link to="/dashboard/films">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -23,7 +23,7 @@
           </router-link>
         </div>
         <div class="cartoons">
-         <router-link to="/cartoons">
+         <router-link to="/dashboard/cartoons">
             <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -40,7 +40,7 @@
          </router-link>
         </div>
         <div class="series">
-         <router-link to="/serie"> <svg
+         <router-link to="/dashboard/serie"> <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
             height="24"
@@ -65,7 +65,7 @@
         </router-link>
         </div>
         <div class="documentary">
-          <router-link to="/documentary">
+          <router-link to="/dashboard/documentary">
             <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -81,7 +81,7 @@
           </router-link>
         </div>
         <div class="reality_show">
-          <router-link to="/reality">
+          <router-link to="/dashboard/documentary">
             <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"

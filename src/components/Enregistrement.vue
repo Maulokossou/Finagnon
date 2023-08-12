@@ -47,7 +47,11 @@
         startValidation.value = true;
 
         if (isValidEmail.value == true && isStrongPassword.value == true && isPasswordConfirmed.value==true) {
-            router.replace('/connexion')
+/*             localStorage.setItem('userInfos', {
+                email: email,
+                password: password
+            }) */
+            router.replace('/dashboard')
         }
     }
  

@@ -1,10 +1,47 @@
 <template>
-    <div>
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Accusamus ab recusandae, sit tempora deleniti voluptate cumque corporis facere aliquid explicabo eius inventore impedit eveniet facilis? Pariatur fugit libero ducimus aliquam?</p>
+    <DashboardLayout>
+      <div>
+        <div class="container_bottom">
+        <div class="contain">
+          <div class="film_container">
+            <div class="film" v-for="element in filmsFiltres">
+              <div class="top">
+                <a :href="element.url"><img :src="element.Image" alt=""></a>
+              </div>
+             <div class="bottom">
+              <h2>{{ element.titre }}</h2>
+              <div class="collection">
+                <p>{{ element.genre }}_</p>
+                <p>{{ element.annee }}</p>
+              </div>
+              <p><span style="border-bottom: 1px solid black;">Durée: </span>{{ element.durée }}</p>
+             </div>
+              
+          </div>
+          </div>
+        </div>
+      </div>
     </div>
-</template>
-<script lang="ts" setup>
+    </DashboardLayout>
+   </template>
+  
+   <script lang="ts" setup>
+   import DashboardLayout from "@/views/layout/DashboardContainerLayout.vue"
+    import Logo from "../components/Logo.vue";
+    import { useFilmStore } from "@/Stores/film";
+    import { storeToRefs } from "pinia";
+    import { ref, onMounted } from "vue";
+  
+    const { initialise } = useFilmStore();
+    const { films } = storeToRefs(useFilmStore());
 
-</script>
-<style>
-</style>
+    const genreFiltre = "Télé_Réalité";
+    const filmsFiltres = films.value.filter(film => film.genre === "Télé_Réalité");
+  
+    onMounted(async () => {
+    await initialise();
+    });
+  </script>
+  
+  <style>
+  </style>
