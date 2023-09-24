@@ -5,17 +5,22 @@
                     <div class="navbar">
                         <Logo/>
                         <div class="nav_connexion">
-                            <button><router-link to="/connexion">S'IDENTIFIER</router-link></button>
+                            <button><router-link to="/connexion">SE CONNECTER</router-link></button>
+                            <button><router-link to="/enregistrement">S'INSCRIRE</router-link></button>
                         </div>
                     </div>
                     <div class="presentation">
                         <h1>Films, émissions de télévision et plus encore illimités.</h1>
                         <p>Regardez n'importe oû, à n'importe quel moment...!!!</p>
                         <div class="start">
-                            <p>Prêt à regarder? Entrer votre e-mail pour créer ou redémarrer votre abonnement</p>
+                            <p>Prêt à regarder? Choisissez un abonnement et bénéficier de nos offres...!!!</p>
                             <div class="input">
-                                <input type="email" name="email" id="email" placeholder="Adresse e-mail">
-                                <button><router-link to="/enregistrement">Commencer<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg></router-link></button>
+                                <button>PREMIUM</button>
+                                <button>BASIC</button>
+                                <button>MOBILE</button>
+                                <button>STANDARD</button>
+                                <!-- <input type="email" name="email" id="email" placeholder="Adresse e-mail"> -->
+                                
                             </div>
                         </div>
                     </div>
@@ -99,6 +104,10 @@
                             </ul>
                         </div>
                     </div>
+                       <!--  <form action="" method="post">
+                            <input type="text" v-model="donnee">
+                            <button type="submit" @click="name()">Envoyer</button>
+                        </form> -->
                     <div class="bottom">
                         <p>Copyright &copy; 2023 - Tous droits réservés <span>Mentions légales</span>/<span>Made by <router-link to="">Maurel LOKOSSOU</router-link></span></p>
                     </div>
@@ -109,6 +118,18 @@
 
 <script lang="ts" setup>
 import Logo from "../components/Logo.vue";
+import { ref } from "vue";
+import axios from 'axios';
+
+const donnee = ref('')
+function name(){
+    /* console.log(donnee.value); */
+    axios.post("http://localhost:5173/api/posts/store", {"posts":donnee.value})
+    .then((response)=>{(console.log(response))})
+    .catch(error=>{
+        console.log(error); 
+    })
+}
 </script>
 
 <style scoped>
@@ -145,6 +166,9 @@ import Logo from "../components/Logo.vue";
         border-radius: 4px;
         font-weight: bold;
         cursor: pointer;
+    }
+    .nav_connexion button:first-child{
+        margin-right: 8px;
     }
     .nav_connexion button a{
         color: white;
@@ -189,15 +213,16 @@ import Logo from "../components/Logo.vue";
         font-size: 17px;
     }
     .header .presentation .start button{
-        padding: 9px;
+        padding: 15px 40px;
         background: none;
         border: none;
         display: flex;
         align-items: center;
         background-color: #ecb431da;
         color: white;
-        border-top-right-radius: 4px;
-        border-bottom-right-radius: 4px;
+        font-size: 14px;
+        border-radius: 4px;
+        margin-left: 7px;
         font-weight: bold;
         cursor: pointer;
     }

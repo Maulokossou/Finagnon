@@ -1,28 +1,52 @@
 <template>
     <div class="b-container">
         <div class="formulaire">
-            <form action="">
+            <form @submit.prevent="register">
                 <h1>CONNEXION</h1>
                 <div class="input">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-                    <input type="email" id="email" name="email" placeholder="Adresse e-mail">
+                    <input type="email" id="email" name="email" placeholder="Adresse e-mail" v-model="user.email">
                 </div>
                 <div class="input">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-lock"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-                    <input type="password" id="password" name="password" placeholder="Mot de passe" maxlength="6">
+                    <input type="password" v-model="user.password">
                 </div>
                 <button type="submit" id="envoyer">Se connecter</button>
+                <p class="error">{{ errorText }}</p>
                 <div class="footer">
                     <p>Pas encore de compte?</p>
                     <router-link to="/enregistrement">Inscrivez-vous ici</router-link>
                 </div>
-                <p>{{}}</p>
+                 
             </form>
         </div>
     </div>
 </template>
 <script lang="ts" setup>
+import router from '@/router';
+import {ref, computed} from 'vue'
+import{supabase} from "@/lib/supabase"
 
+
+const errorText=ref('')
+const user = ref({
+    "email":"",
+    "password":"",
+})
+console.log(user)
+
+
+async function register(){
+    const {data,error}= await supabase.auth.signInWithPassword({           
+        email:user.value.email,
+        password:user.value.password,
+    })
+    if(error){
+        errorText.value=error.message
+    }else{
+        router.replace("/dashboard")
+    }
+}
 </script>
 <style scoped>
     .b-container {

@@ -6,7 +6,7 @@
         <div class="film_container">
           <div class="film" v-for="element in films">
             <div class="top">
-              <a :href="element.url"><img :src="element.Image" alt=""></a>
+              <a :href="element.url" title="Lire la vidéo..."><img :src="element.Image" alt=""></a>
             </div>
            <div class="bottom">
             <h2>{{ element.titre }}</h2>
@@ -14,7 +14,10 @@
               <p>{{ element.genre }}_</p>
               <p>{{ element.annee }}</p>
             </div>
-            <p><span style="border-bottom: 1px solid black;">Durée: </span>{{ element.durée }}</p>
+            <div class="duration">
+              <p><span style="border-bottom: 1px solid black;">Durée: </span>{{ element.durée }}</p>
+              <button @click="addToPlaylist(element)" title="Ajouter à votre liste de lecture">Ajouter</button>
+            </div>
            </div>
             
         </div>
@@ -34,10 +37,8 @@
 
   const { initialise } = useFilmStore();
   const { films } = storeToRefs(useFilmStore());
+  const { addToPlaylist } = useFilmStore();
 
-  onMounted(async () => {
-  await initialise();
-  });
 </script>
 
 <style>
@@ -94,5 +95,21 @@
   }
   .collection p{
   display: flex;
+  }
+  .duration{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .duration button{
+    cursor: pointer;
+    background: none;
+    border: none;
+    font-size:14px ;
+    /* border: 1px solid black; */
+    padding: 7px;
+    border-radius: 4px;
+    background: rgba(0, 0, 0, 0.87);
+    color: white;
   }
 </style>

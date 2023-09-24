@@ -3,65 +3,19 @@
     <div class="container">
       <div class="container_top">
         <div class="hamburger">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="30"
-            height="30"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="feather feather-menu"
-          >
-            <line x1="3" y1="12" x2="21" y2="12"></line>
-            <line x1="3" y1="6" x2="21" y2="6"></line>
-            <line x1="3" y1="18" x2="21" y2="18"></line>
-          </svg>
+         <HamburgerIcon></HamburgerIcon>
         </div>
         <div class="search">
           <div class="right">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="feather feather-search"
-            >
-              <circle cx="11" cy="11" r="8"></circle>
-              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-            </svg>
+            <SearchIcon></SearchIcon>
             <input type="text" placeholder="Rechercher..." />
           </div>
           <div class="left">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="feather feather-mic"
-            >
-              <path
-                d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"
-              ></path>
-              <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
-              <line x1="12" y1="19" x2="12" y2="23"></line>
-              <line x1="8" y1="23" x2="16" y2="23"></line>
-            </svg>
+            <MicIcon></MicIcon>
           </div>
         </div>
         <div class="deconnexion">
+          <p class="author" v-if="nowUser">{{ nowUser.email }}</p>
           <button><router-link to="/">SE DECONNECTER</router-link></button>
         </div>
       </div>
@@ -69,6 +23,22 @@
     </div>
 </template>
 <script lang="ts" setup>
+
+import{onMounted, ref} from 'vue'
+import{storeToRefs} from 'pinia'
+import {useFilmStore} from '../Stores/film'
+import SearchIcon from "../components/SearchIcon.vue";
+import HamburgerIcon from "../components/HamburgerIcon.vue";
+import MicIcon from "../components/MicIcon.vue";
+const {initialiseUser}= useFilmStore()
+const {nowUser}= storeToRefs(useFilmStore())
+import{supabase} from "@/lib/supabase"
+
+onMounted(
+  ()=>{initialiseUser()}
+)
+console.log(nowUser);
+
 
 </script>
 <style scoped>
@@ -133,5 +103,13 @@
 }
 .container_top .deconnexion button a {
   color: white;
+}
+.deconnexion{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.deconnexion p{
+  margin-right: 20px;
 }
 </style>

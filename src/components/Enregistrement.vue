@@ -1,29 +1,30 @@
 <template>
     <div class="b-container">
         <div class="formulaire">
-            <form action="" @submit.prevent="">
+            <form @submit.prevent="register">
                 <h1>INSCRIPTION</h1>
                 <div class="input">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-                    <input type="text" id="text" name="text" placeholder="Nom" v-model="name">
+                    <input type="text" id="text" name="text" placeholder="Nom" v-model="user.name">
                 </div>
                 <div class="input">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-                    <input type="text" id="text" name="text" placeholder="Prénom" v-model="surname">
+                    <input type="text" id="text" name="text" placeholder="Prénom" v-model="user.surname">
                 </div>
                 <div class="input">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-                    <input :class="{valid : isValidEmail == true, invalid :isValidEmail == false}" type="email" id="email" name="email" placeholder="Adresse e-mail" v-model="email">
+                    <input type="email" id="email" name="email" placeholder="Adresse e-mail" v-model="user.email">
                 </div> 
                 <div class="input">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-lock"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-                    <input :class="{valid : isStrongPassword == true, invalid :isStrongPassword == false}" type="password" id="password" name="password" placeholder="Mot de passe" maxlength="8" v-model="password">
+                    <input type="password" id="password" name="password" placeholder="Mot de passe"  v-model="user.password">
                 </div>
                 <div class="input">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-lock"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-                    <input :class="{valid : isPasswordConfirmed == true, invalid :isPasswordConfirmed == false}" type="password" id="password2" name="password" placeholder="Confirmer mot de passe" maxlength="8" v-model="confirmPassword">
+                    <input type="password" id="password2" name="password" placeholder="Confirmer mot de passe"  v-model="user.confirmPassword">
                 </div>
-                <input type="submit" @click="register" value="S'inscrire" id="envoyer">
+                <button type="submit" id="envoyer">S'inscrire</button>
+                <p class="error">{{ errorText }}</p>
                 <div class="footer">
                     <p>Déja un compte?</p>
                     <router-link to="/connexion">Connectez-vous ici</router-link>
@@ -35,35 +36,30 @@
 <script lang="ts" setup>
     import router from '@/router';
     import {ref, computed} from 'vue'
+    import{supabase} from "@/lib/supabase"
+    /* import { Session } from '@supabase/supabase-js'; */
     const startValidation = ref(false)
 
-    const name = ref('')
-    const surname=ref('')
-    const email =ref('')
-    const password =ref('')
-    const confirmPassword=ref('')
-
-    function register() {
-        startValidation.value = true;
-
-        if (isValidEmail.value == true && isStrongPassword.value == true && isPasswordConfirmed.value==true) {
-/*             localStorage.setItem('userInfos', {
-                email: email,
-                password: password
-            }) */
-            router.replace('/dashboard')
+    const errorText=ref('')
+    const user = ref({
+        "name":"",
+        "surname":"",
+        "email":"",
+        "password":"",
+        "confirmPassword":""
+    })
+    console.log(user)
+    const register = async()=>{
+        const {data,error}= await supabase.auth.signUp({           
+            email:user.value.email,
+            password:user.value.password,
+        })
+        if(error){
+            errorText.value=error.message
+        }else{
+            router.replace("/dashboard")
         }
     }
- 
-   const isValidEmail = computed(()=>{
-        return startValidation.value ? /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email.value):null;
-   });
-   const isStrongPassword = computed(()=>{
-        return startValidation.value ? /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{8,})/.test(password.value):null;
-   });
-   const isPasswordConfirmed= computed(()=>{
-        return startValidation.value ? password.value == confirmPassword.value:null;
-   });
 </script>
 <style scoped>
     .b-container {
@@ -124,7 +120,10 @@
         color: white;
         background-color: #ecb431da;
         border-radius: 3px;
-        margin-top: 20px;
+        margin-top: 10px;
+        margin-bottom:20px;
+        padding:10px 0px;
+        font-size:18px;
     }
     h1{
         margin-left: 54px;
@@ -152,6 +151,7 @@
         align-items: center;
         justify-content: space-between;
         /* border: 1px solid white; */
+        margin-top:-10px;
     }
     .footer a{
        color: #ecb431da;

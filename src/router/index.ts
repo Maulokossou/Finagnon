@@ -9,6 +9,7 @@ import Cartoons from '../views/CartoonsView.vue'
 import Serie from '../views/SeriesView.vue'
 import Documentary from '../views/DocumentaryView.vue'
 import Reality from '../views/RealityView.vue'
+import ListedeLecture from "../views/ListedeLectureView.vue"
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -47,6 +48,11 @@ const router = createRouter({
       path: '/dashboard/reality',
       name: 'dashboard_reality',
       component: Reality
+    },
+    {
+      path: '/dashboard/listedelecture',
+      name: 'dashboard_listedelecture',
+      component: ListedeLecture
     },
     {
       path: '/connexion',
