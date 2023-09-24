@@ -15,10 +15,10 @@
                         <div class="start">
                             <p>Prêt à regarder? Choisissez un abonnement et bénéficier de nos offres...!!!</p>
                             <div class="input">
-                                <button>PREMIUM</button>
+                                <button class="animate__animated animate__heartBeat">PREMIUM</button>
                                 <button>BASIC</button>
                                 <button>MOBILE</button>
-                                <button>STANDARD</button>
+                                <button class="animate__animated animate__heartBeat">STANDARD</button>
                                 <!-- <input type="email" name="email" id="email" placeholder="Adresse e-mail"> -->
                                 
                             </div>
@@ -133,6 +133,7 @@ function name(){
 </script>
 
 <style scoped>
+@import 'animate.css/animate.min.css';
     .production{
         background-color: black;
     }

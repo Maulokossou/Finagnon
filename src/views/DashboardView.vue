@@ -16,7 +16,7 @@
             </div>
             <div class="duration">
               <p><span style="border-bottom: 1px solid black;">Durée: </span>{{ element.durée }}</p>
-              <button @click="addToPlaylist(element)" title="Ajouter à votre liste de lecture">Ajouter</button>
+              <!-- <button @click="addToPlaylist(element)" title="Ajouter à votre liste de lecture">Ajouter</button> -->
             </div>
            </div>
             

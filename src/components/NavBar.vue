@@ -15,7 +15,7 @@
           </div>
         </div>
         <div class="deconnexion">
-          <p class="author" v-if="nowUser">{{ nowUser.email }}</p>
+          <p id="author" v-if="nowUser" class="animate__animated animate__shakeY"> {{ nowUser.email }}</p>
           <button><router-link to="/">SE DECONNECTER</router-link></button>
         </div>
       </div>
@@ -38,19 +38,14 @@ onMounted(
   ()=>{initialiseUser()}
 )
 console.log(nowUser);
-
-
 </script>
 <style scoped>
 .container {
   width: 1055px;
-  /* border: 1px solid black; */
   height: 640px;
-  /*  border: 2px solid blue; */
   background-color: whitesmoke;
 }
 .container_top {
-  /* border: 1px solid green; */
   padding: 15px 10px;
   background-color: #f7f9fb;
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
@@ -66,7 +61,6 @@ console.log(nowUser);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  /* border: 1px solid rgb(216, 215, 215); */
   border-radius: 5px;
   width: 400px;
   padding: 10px;
@@ -76,7 +70,6 @@ console.log(nowUser);
 .container_top .search .right {
   display: flex;
   align-items: center;
-  /* border: 1px solid black; */
   cursor: pointer;
 }
 .container_top .search .right input {
@@ -92,7 +85,6 @@ console.log(nowUser);
   cursor: pointer;
   border: none;
   background: none;
-  /* border: 1px solid black; */
   padding: 15px;
   margin-right: 10px;
   border-radius: 4px;
@@ -111,5 +103,9 @@ console.log(nowUser);
 }
 .deconnexion p{
   margin-right: 20px;
+}
+#author{
+  border-bottom:1px solid #ecb431da;
+  color:#ecb431da;
 }
 </style>
