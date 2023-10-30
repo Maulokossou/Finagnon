@@ -4,7 +4,7 @@
       <div class="container_bottom">
       <div class="contain">
         <div class="film_container">
-          <div class="film" v-for="element in films">
+          <div class="film" >
             <div class="top">
               <a :href="element.url" title="Lire la vidéo..."><img :src="element.Image" alt=""></a>
             </div>
@@ -31,13 +31,12 @@
  <script lang="ts" setup>
  import DashboardLayout from "@/views/layout/DashboardContainerLayout.vue"
   import Logo from "../components/Logo.vue";
-  import { useFilmStore } from "@/Stores/film";
   import { storeToRefs } from "pinia";
   import { ref, onMounted } from "vue";
 
-  const { initialise } = useFilmStore();
+ /*  const { initialise } = useFilmStore();
   const { films } = storeToRefs(useFilmStore());
-  const { addToPlaylist } = useFilmStore();
+  const { addToPlaylist } = useFilmStore(); */
 
 </script>
 

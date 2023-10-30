@@ -1,2 +1,0 @@
-export const url ='https://ccjdsojhpetdkfeuoroo.supabase.co';
-export const key = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNjamRzb2pocGV0ZGtmZXVvcm9vIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTE1Njk2MDcsImV4cCI6MjAwNzE0NTYwN30.7KlID_45DlaBpPJbwVSI9bxQTVi_wKnTAZ5MsvmOldQ';

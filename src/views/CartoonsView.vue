@@ -4,7 +4,7 @@
         <div class="container_bottom">
         <div class="contain">
           <div class="film_container">
-            <div class="film" v-for="element in filmsFiltres">
+            <div class="film">
               <div class="top">
                 <a :href="element.url"><img :src="element.Image" alt=""></a>
               </div>
@@ -28,17 +28,16 @@
    <script lang="ts" setup>
    import DashboardLayout from "@/views/layout/DashboardContainerLayout.vue"
     import Logo from "../components/Logo.vue";
-    import { useFilmStore } from "@/Stores/film";
     import { storeToRefs } from "pinia";
     import { ref, onMounted } from "vue";
   
-    const { initialise } = useFilmStore();
+   /*  const { initialise } = useFilmStore();
     const { films } = storeToRefs(useFilmStore());
     const genreFiltre = "Dessin animé";
     const filmsFiltres = films.value.filter(film => film.genre === "Dessin animé");
     onMounted(async () => {
     await initialise();
-    });
+    }); */
     
   </script>
   

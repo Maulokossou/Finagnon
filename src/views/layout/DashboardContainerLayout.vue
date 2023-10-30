@@ -13,16 +13,15 @@
   <script lang="ts" setup>
   import SideBar from '@/components/SideBar.vue'
   import NavBar from '@/components/NavBar.vue'
-  import { useFilmStore } from "@/Stores/film";
   import { storeToRefs } from "pinia";
   import { ref, onMounted } from "vue";
   
-  const { initialise } = useFilmStore();
+/*   const { initialise } = useFilmStore();
   const { films } = storeToRefs(useFilmStore());
   
   onMounted(async () => {
     await initialise();
-  });
+  }); */
    
   </script>
 

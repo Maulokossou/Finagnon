@@ -60,16 +60,16 @@
     import DessinIcon from "../components/DessinIcon.vue";
     import FilmIcon from "../components/FilmIcon.vue";
     import ListeIcon from "../components/ListeIcon.vue";
-    import { useFilmStore } from "@/Stores/film";
+
     import { storeToRefs } from "pinia";
     import { ref, onMounted } from "vue";
 
-    const { initialise } = useFilmStore();
+   /*  const { initialise } = useFilmStore();
     const { films } = storeToRefs(useFilmStore());
 
     onMounted(async () => {
     await initialise();
-    });
+    }); */
 </script>
 <style scoped>
 .side-bar {

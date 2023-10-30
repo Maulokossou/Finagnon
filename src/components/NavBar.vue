@@ -15,30 +15,42 @@
           </div>
         </div>
         <div class="deconnexion">
-          <p id="author" v-if="nowUser" class="animate__animated animate__shakeY"> {{ nowUser.email }}</p>
+          <p id="author"> {{ user.email }}</p>
+          <p id="author"> {{ user.name }}</p>
           <button><router-link to="/">SE DECONNECTER</router-link></button>
         </div>
       </div>
     </div>
     </div>
 </template>
-<script lang="ts" setup>
 
+
+<script lang="ts" setup>
 import{onMounted, ref} from 'vue'
 import{storeToRefs} from 'pinia'
-import {useFilmStore} from '../Stores/film'
 import SearchIcon from "../components/SearchIcon.vue";
 import HamburgerIcon from "../components/HamburgerIcon.vue";
 import MicIcon from "../components/MicIcon.vue";
-const {initialiseUser}= useFilmStore()
-const {nowUser}= storeToRefs(useFilmStore())
-import{supabase} from "@/lib/supabase"
+import router from "../router/index"
+import {clientHttp} from '../lib/clientHttps';
+let user = ref({
+  email:"",
+  name:"",
+})
 
-onMounted(
-  ()=>{initialiseUser()}
-)
-console.log(nowUser);
+onMounted(async () => {});
+  const token = localStorage.getItem("token");
+  if (token) {
+    const decodedToken = JSON.parse(atob(token.split(".")[1]));
+    user.value.email = decodedToken.email;
+    user.value.name = decodedToken.name;
+  } else {
+    console.log("Le token n'a pas été trouvé dans localStorage.");
+    router.replace("/");
+  }
 </script>
+
+
 <style scoped>
 .container {
   width: 1055px;

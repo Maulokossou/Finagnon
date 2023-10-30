@@ -104,10 +104,6 @@
                             </ul>
                         </div>
                     </div>
-                       <!--  <form action="" method="post">
-                            <input type="text" v-model="donnee">
-                            <button type="submit" @click="name()">Envoyer</button>
-                        </form> -->
                     <div class="bottom">
                         <p>Copyright &copy; 2023 - Tous droits réservés <span>Mentions légales</span>/<span>Made by <router-link to="">Maurel LOKOSSOU</router-link></span></p>
                     </div>
@@ -119,17 +115,7 @@
 <script lang="ts" setup>
 import Logo from "../components/Logo.vue";
 import { ref } from "vue";
-import axios from 'axios';
 
-const donnee = ref('')
-function name(){
-    /* console.log(donnee.value); */
-    axios.post("http://localhost:5173/api/posts/store", {"posts":donnee.value})
-    .then((response)=>{(console.log(response))})
-    .catch(error=>{
-        console.log(error); 
-    })
-}
 </script>
 
 <style scoped>
